@@ -20,9 +20,21 @@ const ANIM_MAP = {
   slideInUp: 'slideInUp',
   zoomIn: 'zoomIn',
   fadeIn: 'fadeIn',
+  fadeInUp: 'fadeInUp',
 }
 
-function AnimWrap({ anim, children, style }) {
+// Photos below the "wedding album" heading get a staggered fade-in-up on scroll,
+// matching the original template's album section.
+const ALBUM_TOP = (() => {
+  const heading = nodes.find((n) => n.id === 'ceF_b9kHwH')
+  return heading ? parseFloat(heading.box.top) : Infinity
+})()
+const ALBUM_ORDER = nodes
+  .filter((n) => n.type === 'photo' && parseFloat(n.box.top) >= ALBUM_TOP)
+  .sort((a, b) => parseFloat(a.box.top) - parseFloat(b.box.top) || parseFloat(a.box.left) - parseFloat(b.box.left))
+  .map((n) => n.id)
+
+function AnimWrap({ anim, children, style, delay }) {
   const ref = useRef(null)
   const [visible, setVisible] = useState(false)
   useEffect(() => {
@@ -46,7 +58,7 @@ function AnimWrap({ anim, children, style }) {
   }, [])
   const cls = 'anim ' + (ANIM_MAP[anim] || 'fadeIn') + (visible ? ' in' : '')
   return (
-    <div ref={ref} className={cls} style={style}>
+    <div ref={ref} className={cls} style={delay ? { ...style, animationDelay: `${delay}ms` } : style}>
       {children}
     </div>
   )
@@ -116,11 +128,20 @@ function Node({ n }) {
       </AnimWrap>
     )
   } else if (n.type === 'photo') {
+    const albumIdx = ALBUM_ORDER.indexOf(n.id)
+    const isAlbum = albumIdx !== -1
     inner = (
-      <AnimWrap anim={n.anim} style={{ width: '100%', height: '100%' }}>
+      <AnimWrap
+        anim={isAlbum ? 'fadeInUp' : n.anim}
+        delay={isAlbum ? albumIdx * 120 : undefined}
+        style={{ width: '100%', height: '100%' }}
+      >
         <div
           className="photo-bg"
-          style={{ backgroundImage: `url(${asset(n.url)})`, backgroundSize: n.bgSize || 'cover' }}
+          style={{
+            backgroundImage: `url(${asset(n.url)})`,
+            backgroundSize: n.bgSize || 'cover',
+          }}
         />
       </AnimWrap>
     )
