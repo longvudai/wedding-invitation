@@ -8,6 +8,8 @@ import AudioToggle from './components/AudioToggle.jsx'
 import { LANGS, LANG_LABEL, useLang, useNodeText, useT } from './i18n.jsx'
 import { getGuestName } from './guest.js'
 
+const asset = (u) => (u && u.startsWith('/') ? import.meta.env.BASE_URL + u.slice(1) : u)
+
 const CANVAS_W = 500
 const CANVAS_H = 6844
 const TOP_PAD = 32
@@ -118,7 +120,7 @@ function Node({ n }) {
       <AnimWrap anim={n.anim} style={{ width: '100%', height: '100%' }}>
         <div
           className="photo-bg"
-          style={{ backgroundImage: `url(${n.url})`, backgroundSize: n.bgSize || 'cover' }}
+          style={{ backgroundImage: `url(${asset(n.url)})`, backgroundSize: n.bgSize || 'cover' }}
         />
       </AnimWrap>
     )
