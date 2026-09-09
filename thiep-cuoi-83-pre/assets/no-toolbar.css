@@ -1,0 +1,46 @@
+/* Local mirror overrides: remove ZenLove branding and interactive toolbar widgets.
+   Kept: RSVP button, music. */
+
+/* "Built with Zenlove" (rotated, right edge) + "ZenLove.Me" credit in the card */
+.watermark,
+.mc-copyright,
+
+/* Auto-popping guest chat/wish messages */
+#blessing-msg-list,
+.blessing-msg,
+
+/* "Gửi lời chúc..." message box button + its popup form */
+#zen-toolbar .bar-msg-btn,
+.blessing-box-popup,
+.blessing-list-msg,
+
+/* "Bắn tim" button */
+#zen-toolbar #animation-gift-preview-btn,
+
+/* Gift button + gift popups */
+#zen-toolbar .bar-gift-btn,
+.bar-gift-box,
+.gift-box-popup,
+.bar-gift-list,
+
+/* Like button */
+#zen-toolbar .bar-like-btn,
+
+/* "Chỉnh sửa mẫu này" (edit this template) button */
+[aria-label="Chỉnh sửa mẫu này"],
+
+/* QR code floating button + popup */
+.qrFloatingButton,
+.qrCodeShow,
+
+/* Toolbar toggle (round menu) button */
+.toolbar-toggle-button,
+
+/* "Thiết kế thiệp online tại ZenLove.Me" credit text box baked into the template */
+[data-node-id="xpABR71-1t"],
+
+/* In-page ZenLove loading animation (keeps the "template unavailable" text state) */
+.form-view-status:has(svg),
+.form-view-status:has(canvas) {
+  display: none !important;
+}
