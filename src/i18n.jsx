@@ -86,7 +86,7 @@ const NODE_TEXT = {
     rQVlHax2HM: 'Wedding Reception',
     '7vErQdxtwL': 'our message',
     XRgYQn3B6T:
-      '<div>Your presence</div><div>is the most precious gift to the two of us.</div><div>We know life keeps everyone busy,</div><div>yet you still make time to share our joy</div><div>and celebrate this new beginning.</div><div>Our happiness today is more complete than ever with you here.</div><br/><div>Thank you sincerely!</div>',
+      '<div>Your presence is the most precious gift</div><div>we could ask for.</div><br/><div>We know how busy life can be,</div><div>and it means so much to us</div><div>that you have taken the time to share</div><div>in our joy and celebrate this new chapter with us.</div><br/><div>Having you here makes our special day</div><div>even more meaningful and our happiness</div><div>truly complete.</div>',
     '5jFX5GUuTk': 'rsvp',
     'hLQHRI5AV-': 'send a gift',
     ceF_b9kHwH: 'wedding album',
