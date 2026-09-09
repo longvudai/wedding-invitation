@@ -1,0 +1,55 @@
+@font-face {
+  font-family: 'AnisaSignature';
+  src: url('anisasignature-1760784415207-0qtjev.woff2') format('woff2'), url('anisasignature-1760784415207-0qtjev.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}@font-face {
+  font-family: 'Clodia';
+  src: url('clodia-1760784708368-v1efam.woff2') format('woff2'), url('clodia-1760784708368-v1efam.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}@font-face {
+  font-family: 'Eastin Hikary';
+  src: url('eastin-hikary-1760781779439-yownng.woff2') format('woff2'), url('eastin-hikary-1760781779439-yownng.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}@font-face {
+  font-family: 'Lora Regular';
+  src: url('lora-regular-1765171536658-xs6f6j.woff2') format('woff2'), url('lora-regular-1765171536658-xs6f6j.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}@font-face {
+  font-family: 'Loving Ambros';
+  src: url('loving-ambros-1774793808818-w24f1l.woff2') format('woff2'), url('loving-ambros-1774793808818-w24f1l.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}@font-face {
+  font-family: 'Mesdag Regular';
+  src: url('mesdag-regular-1774793777779-f6mv1p.woff2') format('woff2'), url('mesdag-regular-1774793777779-f6mv1p.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}@font-face {
+  font-family: 'Times New Roman';
+  src: url('times-new-roman-1774726464435-3ajqfr.woff2') format('woff2'), url('times-new-roman-1774726464435-3ajqfr.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}@font-face {
+  font-family: 'VNF Bodoni';
+  src: url('vnf-bodoni-1765887262194-vxrdxu.woff2') format('woff2'), url('vnf-bodoni-1765887262194-vxrdxu.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}@font-face {
+  font-family: 'Whitegone';
+  src: url('whitegone-1760784220684-7lir05.woff2') format('woff2'), url('whitegone-1760784220684-7lir05.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
