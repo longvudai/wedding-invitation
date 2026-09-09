@@ -93,6 +93,21 @@ const NODE_TEXT = {
   },
 }
 
+// Pick the initial language from the browser's locale (Vietnamese speakers get
+// Vietnamese, everyone else gets English).
+function detectLang() {
+  try {
+    const locales = navigator.languages?.length
+      ? navigator.languages
+      : [navigator.language]
+    for (const loc of locales) {
+      const code = String(loc).toLowerCase().split('-')[0]
+      if (LANGS.includes(code)) return code
+    }
+  } catch {}
+  return 'en'
+}
+
 const LangCtx = createContext({ lang: 'vi', setLang: () => {} })
 
 export function LangProvider({ children }) {
@@ -101,7 +116,7 @@ export function LangProvider({ children }) {
       const s = localStorage.getItem('lang')
       if (LANGS.includes(s)) return s
     } catch {}
-    return 'vi'
+    return detectLang()
   })
   const setLang = useCallback((l) => {
     setLangState(l)
