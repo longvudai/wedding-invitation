@@ -8,7 +8,7 @@ const BANK = {
   number: '9396890555',
   holder: 'KIM ANH',
 }
-const QR_SRC = import.meta.env.BASE_URL + 'qr/bride.png'
+const QR_SRC = import.meta.env.BASE_URL + 'qr/bride.webp'
 
 export default function GiftBox({ url }) {
   const [open, setOpen] = useState(false)
