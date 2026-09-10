@@ -16,6 +16,7 @@ export default function AudioToggle() {
       audio.play().then(() => setPlaying(true)).catch(() => {})
       window.removeEventListener('pointerdown', tryPlay)
     }
+    tryPlay()
     window.addEventListener('pointerdown', tryPlay)
     return () => window.removeEventListener('pointerdown', tryPlay)
   }, [])
