@@ -12,13 +12,22 @@ export default function AudioToggle() {
   useEffect(() => {
     const audio = ref.current
     if (!audio) return
+    const events = ['pointerdown', 'keydown', 'touchstart', 'scroll']
+    const stop = () => events.forEach((e) => window.removeEventListener(e, tryPlay))
     const tryPlay = () => {
-      audio.play().then(() => setPlaying(true)).catch(() => {})
-      window.removeEventListener('pointerdown', tryPlay)
+      audio
+        .play()
+        .then(() => {
+          setPlaying(true)
+          stop()
+        })
+        .catch(() => {})
     }
+    // Attempt straight away (works only where autoplay is allowed), then fall
+    // back to the first user gesture — browsers block audio until then.
     tryPlay()
-    window.addEventListener('pointerdown', tryPlay)
-    return () => window.removeEventListener('pointerdown', tryPlay)
+    events.forEach((e) => window.addEventListener(e, tryPlay, { passive: true }))
+    return stop
   }, [])
 
   function toggle() {
