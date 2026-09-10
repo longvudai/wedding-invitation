@@ -93,6 +93,15 @@ const NODE_TEXT = {
   },
 }
 
+// An explicit ?lang=en / ?lang=vi query param overrides everything else.
+function langFromUrl() {
+  try {
+    const l = new URLSearchParams(window.location.search).get('lang')?.toLowerCase()
+    if (LANGS.includes(l)) return l
+  } catch {}
+  return null
+}
+
 // Pick the initial language from the browser's locale (Vietnamese speakers get
 // Vietnamese, everyone else gets English).
 function detectLang() {
@@ -112,6 +121,8 @@ const LangCtx = createContext({ lang: 'vi', setLang: () => {} })
 
 export function LangProvider({ children }) {
   const [lang, setLangState] = useState(() => {
+    const urlLang = langFromUrl()
+    if (urlLang) return urlLang
     try {
       const s = localStorage.getItem('lang')
       if (LANGS.includes(s)) return s
@@ -122,6 +133,11 @@ export function LangProvider({ children }) {
     setLangState(l)
     try {
       localStorage.setItem('lang', l)
+    } catch {}
+    try {
+      const url = new URL(window.location.href)
+      url.searchParams.set('lang', l)
+      window.history.replaceState(null, '', url)
     } catch {}
   }, [])
   return <LangCtx.Provider value={{ lang, setLang }}>{children}</LangCtx.Provider>
