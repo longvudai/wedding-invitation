@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { useT } from '../i18n.jsx'
 
-const SRC = 'https://cdn-music.zenlove.me/mp3/beautiful-in-white-1761881405497-kate83p5.mp3'
+const SRC = import.meta.env.BASE_URL + 'audio/wedding-theme.mp3'
 const ICON = 'https://cdn-resource.zenlove.me/assets/mp3/icons/music-4.png'
 
 export default function AudioToggle() {
