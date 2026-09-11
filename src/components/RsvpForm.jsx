@@ -1,9 +1,12 @@
 import { useState } from 'react'
 import { useT } from '../i18n.jsx'
 import { getGuestName } from '../guest.js'
+import { getSender } from '../sender.js'
 
 const FORM_ACTION =
   'https://docs.google.com/forms/d/e/1FAIpQLSf4hpRt0yEVqfMXCqRUePFqF_9v42xFEUZAoa38MGQfEbo40Q/formResponse'
+const GROOM_FORM_ACTION =
+  'https://docs.google.com/forms/d/e/1FAIpQLSfX3s1U5DQ3k7dtLaQ4H134jBotRqttQImbXREk4RigcULoyg/formResponse'
 
 const ENTRY = {
   name: 'entry.375192134',
@@ -18,9 +21,17 @@ const TRANSPORT = {
   self: 'Tui muốn đi nhanh nên tui đi một mình',
   none: 'Tui say no 😞',
 }
+const GROOM_TRANSPORT = {
+  shuttle: 'Xe Chung tại Capital Palace',
+  self: 'Tui muốn đi nhanh nên tui tự đi một mình',
+  none: 'Tui say no 😞',
+}
 
 export default function RsvpForm() {
   const t = useT()
+  const isGroom = getSender() === 'groom'
+  const formAction = isGroom ? GROOM_FORM_ACTION : FORM_ACTION
+  const transportText = isGroom ? GROOM_TRANSPORT : TRANSPORT
   const [name, setName] = useState(() => getGuestName())
   const [attend, setAttend] = useState('yes')
   const [transport, setTransport] = useState('shuttle')
@@ -34,11 +45,11 @@ export default function RsvpForm() {
     data.append(ENTRY.attend, attend === 'yes' ? ATTEND_YES : ATTEND_NO)
     data.append(
       ENTRY.transport,
-      attend === 'yes' ? TRANSPORT[transport] : TRANSPORT.none
+      attend === 'yes' ? transportText[transport] : transportText.none
     )
 
     try {
-      await fetch(FORM_ACTION, {
+      await fetch(formAction, {
         method: 'POST',
         mode: 'no-cors',
         body: data,
@@ -108,7 +119,9 @@ export default function RsvpForm() {
               value={transport}
               onChange={(e) => setTransport(e.target.value)}
             >
-              <option value="shuttle">{t('rsvp.transportShuttle')}</option>
+              <option value="shuttle">
+                {isGroom ? transportText.shuttle : t('rsvp.transportShuttle')}
+              </option>
               <option value="self">{t('rsvp.transportSelf')}</option>
             </select>
           </div>
