@@ -203,7 +203,7 @@ function Node({ n }) {
             lineHeight: 1.6,
           }}
         >
-          {getGuestName() || nodeText(n.id) || 'Gia đình anh An'}
+          {getGuestName()}
         </div>
       </AnimWrap>
     )
